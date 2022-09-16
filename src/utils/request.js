@@ -6,6 +6,7 @@ import errorCode from "./errorCode"
 import router from '../router/index';
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
+axios.defaults.headers['Accept'] = 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8';
 
 const service = axios.create({
   baseURL: 'http://www.allimu.com',
