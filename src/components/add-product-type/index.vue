@@ -132,7 +132,7 @@ export default {
               "channelId":channelId,
             }).then(res=>{
               console.log(res);
-              alert('编辑成功');
+              this.$message.success('操作成功');
             });
           }else{
             setProductType({
@@ -141,12 +141,12 @@ export default {
               "channelId":channelId,
             }).then(res=>{
               console.log(res);
-              alert('创建成功');
+              this.$message.success('操作成功');
             });
           }
           
         } else {
-          console.log('error submit!!');
+          this.$message.error('填写数据不符要求');
           return false;
         }
       });
