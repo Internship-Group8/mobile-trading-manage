@@ -272,12 +272,14 @@ export default {
         'outRefundNo':this.modelrecord.outRefundNo
       }).then(res=>{
         console.log(res.data);
+        if(res.data.returnCode==='error')this.$message.info(res.data.err_code_des);
         this.refund_visible = false;
         this.confirmLoading = false;
         this.inputFee=0;
-        this.getPageList();
+        this.getPageList(1);
       }).catch(errinfo=>{
            console.log(errinfo);
+           this.$message.info('抛出错误');
            this.inputFee=0;
       });
     },
