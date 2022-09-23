@@ -24,7 +24,18 @@
                             <a-menu-item key="5">
                                 <router-link to="/orgtrade">机构订单</router-link>
                             </a-menu-item>
-                            
+                            <a-menu-item key="6">
+                                <router-link to="/myorder">我的订单</router-link>
+                            </a-menu-item>
+                            <a-menu-item key="7">
+                                <router-link to="/producttype">产品类型管理</router-link>
+                            </a-menu-item>
+                            <a-menu-item key="8">
+                                <router-link :to="{name:'AddWeixinMerchant',params:{selected:false}}">微信商户添加组件</router-link>
+                            </a-menu-item>
+                            <a-menu-item key="9">
+                                <router-link :to="{name:'OrderDetail',params:{orderId:1446}}">订单详情组件</router-link>
+                            </a-menu-item>
                         </a-sub-menu>
                         
                     </a-menu>
