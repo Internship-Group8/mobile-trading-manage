@@ -40,11 +40,9 @@
 </template>
 
 <script>
-  import { addProductType, delProductType } from '@/api/product-type-manage/productTypeManage';
-  import { getProductType, getProductTypeList} from '@/api/product-type/productType';
+  import { getProductType, getProductTypeList,delProductType} from '@/api/product-type/productType';
   import { setCookie, delCookie } from '@/utils/cookie';
   import { setToken, delToken } from '@/utils/token';
-
 // 列名
 const columns = [
     {
@@ -61,11 +59,9 @@ const columns = [
     width: '50%',
     }
 ]  
-
 export default {
   name:'ProductType',
   data() {
-
     return {
       formState:{},
       dataSource:[],  
@@ -86,7 +82,6 @@ export default {
   },
   
   methods: {
-
     //刷新页面时重新加载数据
     getProductTypeData:function(){
       // 获取所有产品类型以展示
@@ -126,7 +121,6 @@ export default {
            console.log(errinfo);
         });
 		},
-
     //跳转到产品类型添加组件页面进行类型创建
     addProductType:function(){
         this.$router.push({
@@ -134,7 +128,6 @@ export default {
             params:{selected:false, productTypeId:''}
         })
     },
-
     //跳转到产品类型添加组件页面进行类型编辑，主要是传递参数的不同
     editProductType:function(id){
         this.$router.push({
@@ -142,12 +135,10 @@ export default {
             params:{selected:true, productTypeId:id}
         })
     },
-
     //跳转到删除提示界面
     showModal:function() {
       this.visible = true;
     },
-
     // 确认删除
     handleOk:function(id){
       this.ModalText = '正进行删除';
@@ -164,17 +155,14 @@ export default {
            console.log(errinfo);
       });
     },
-
     //取消删除
     handleCancel(e) {
       console.log('Clicked cancel button');
       this.visible = false;
     },
   },
-
 }
 </script>
 
 <style >
-
 </style>
