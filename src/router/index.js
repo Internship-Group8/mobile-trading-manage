@@ -2,7 +2,6 @@ import VueRouter from "vue-router";
 import Vue from 'vue'
 import Home from '@/pages/demo.vue'
 import PaymentChannal from '@/pages/payment-channel-manage/index.vue'
-import AddPaymentChannel from '@/components/add-payment-channel/index.vue'
 import AddProductType from '@/components/add-product-type/index.vue'
 import Refund from '@/pages/refund-statistic/index.vue'
 import InstitutionalOrder from '@/pages/institutional-order/index.vue'
@@ -10,7 +9,6 @@ import MyOrder from '@/pages/my-order/index.vue'
 import ProductType from '@/pages/product-type-manage/index.vue'
 import AddWeixinMerchant from '@/components/add-weixin-merchant/index.vue'
 import OrderDetail from '@/components/order-detail/index.vue'
-
 
 Vue.use(VueRouter)
 // 创建并暴露一个路由器
@@ -26,11 +24,6 @@ export default new VueRouter({
           name:'PaymentChannal',
           component:PaymentChannal,
         },
-        // {
-        //   path:'/addchannel', 
-        //   name:'AddPaymentChannel',
-        //   component:AddPaymentChannel
-        // },
         { //产品类型组件
           path:'/addtype',
           name:'AddProductType',
