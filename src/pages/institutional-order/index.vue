@@ -209,13 +209,10 @@ export default {
     showDetail:function(id) {
       console.log(id);
       //跳转到订单详情组件
-      // this.$router.push({ 
-      //     path: '/',
-      //     name: '',
-      //     params: {
-            
-      //     }
-      //   });
+      this.$router.push({
+            name:'OrderDetail',
+            params:{orderId:id}
+        })
       
     },
 
