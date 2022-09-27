@@ -16,26 +16,21 @@
                                 <router-link to="/pay">支付渠道管理</router-link>
                             </a-menu-item>
                             <a-menu-item key="3">
-                                <router-link :to="{name:'AddProductType',params:{selected:true,productTypeId:16}}">新增产品类型</router-link>
+                                <router-link to="/producttype">产品类型管理</router-link>
                             </a-menu-item>
                             <a-menu-item key="4">
                                 <router-link to="/refund">退款统计</router-link>
                             </a-menu-item>
                             <a-menu-item key="5">
-                                <router-link to="/orgtrade">机构订单</router-link>
-                            </a-menu-item>
-                            <a-menu-item key="6">
                                 <router-link to="/myorder">我的订单</router-link>
                             </a-menu-item>
-                            <a-menu-item key="7">
-                                <router-link to="/producttype">产品类型管理</router-link>
+                            <a-menu-item key="6">
+                                <router-link to="/orgtrade">机构订单</router-link>
                             </a-menu-item>
-                            <a-menu-item key="8">
+                            <a-menu-item key="7">
                                 <router-link :to="{name:'AddWeixinMerchant',params:{selected:false}}">微信商户添加组件</router-link>
                             </a-menu-item>
-                            <a-menu-item key="9">
-                                <router-link :to="{name:'OrderDetail',params:{orderId:1446}}">订单详情组件</router-link>
-                            </a-menu-item>
+                            
                         </a-sub-menu>
                         
                     </a-menu>
