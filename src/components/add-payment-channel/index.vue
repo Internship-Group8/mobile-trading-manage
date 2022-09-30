@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { getPaymentTypeList } from '@/api/payment-channel/paychannel'
+import { getPayChannelTypeList } from '@/api/payment-channel/paychannel'
 
 export default {
 	name:'addPaymentChannel',
@@ -38,7 +38,7 @@ export default {
 	},
 
 	created(){
-		getPaymentTypeList().then(res=>{
+		getPayChannelTypeList().then(res=>{
 			for(let i=0;i<res.data.data.length;i++){
 				this.typeOptions.push({
 					id: res.data.data.id,
