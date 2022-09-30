@@ -169,7 +169,11 @@ export default {
         }).then(res => {
           if (res.status == 200) {
               this.dataSource=[];
-              if(issearch){}
+              if(issearch){
+                const pagination = { ...this.pagination };
+                pagination.total = 0;
+                this.pagination = pagination;
+              }
               else{
                 let datalist = res.data.data.list; 
                 for (let i = 0; i < datalist.length; i++) {
