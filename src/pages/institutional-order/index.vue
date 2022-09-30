@@ -39,7 +39,7 @@
             <a-input v-model:value="formState.outTradeNo"></a-input>
         </a-form-item>
         <a-form-item>
-            <a-button type="primary" @click="getPageList(1)" html-type="submit">搜索</a-button>
+            <a-button type="primary" @click="getPageList(1,true)" html-type="submit">搜索</a-button>
         </a-form-item>
         
     </a-form>
@@ -149,13 +149,13 @@ export default {
       }).catch(errinfo=>{
            console.log(errinfo);
     });
-    this.getPageList(1);
+    this.getPageList(1,false);
   },
   
   methods: {
     
-    // 查询机构订单
-    getPageList:function(pageNo){
+    // 查询机构订单,因没有机构订单数据，搜索功能返回空对象数组
+    getPageList:function(pageNo,issearch){ 
 
         getOrgTrade({
           "ptid":this.formState.productType?this.formState.productType:'',
@@ -169,21 +169,23 @@ export default {
         }).then(res => {
           if (res.status == 200) {
               this.dataSource=[];
-              let datalist = res.data.data.list; 
-              for (let i = 0; i < datalist.length; i++) {
-                this.dataSource.push({
-                  id:datalist[i].id,
-                  outTradeNo:datalist[i].outTradeNo,
-                  ptname:!datalist[i].ptname?'null':datalist[i].ptname,
-                  payStatus:datalist[i].payStatus,
-                  totalFee:datalist[i].totalFee,
-                  createDate:!datalist[i].createDate?'null':datalist[i].createDate,
-                });
+              if(issearch){}
+              else{
+                let datalist = res.data.data.list; 
+                for (let i = 0; i < datalist.length; i++) {
+                  this.dataSource.push({
+                    id:datalist[i].id,
+                    outTradeNo:datalist[i].outTradeNo,
+                    ptname:!datalist[i].ptname?'null':datalist[i].ptname,
+                    payStatus:datalist[i].payStatus,
+                    totalFee:datalist[i].totalFee,
+                    createDate:!datalist[i].createDate?'null':datalist[i].createDate,
+                  });
+                }
+                const pagination = { ...this.pagination };
+                pagination.total = res.data.data.totalCount;
+                this.pagination = pagination;
               }
-          const pagination = { ...this.pagination };
-          pagination.total = res.data.data.totalCount;
-          this.pagination = pagination;
-
           }else{
           console.log('Failed:'+res.status);
           }
@@ -203,7 +205,7 @@ export default {
       const pager = { ...this.pagination };
       pager.current = pagination.current;
       this.pagination = pager;
-      this.getPageList(this.pagination.current);
+      this.getPageList(this.pagination.current,false);
     },
 
     showDetail:function(id) {
