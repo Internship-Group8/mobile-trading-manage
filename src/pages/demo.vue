@@ -30,7 +30,9 @@
                             <a-menu-item key="7">
                                 <router-link :to="{name:'AddWeixinMerchant',params:{selected:false}}">微信商户添加组件</router-link>
                             </a-menu-item>
-                            
+                            <a-menu-item key="8">
+                                <router-link to="/addPaymentChannel">支付渠道添加组件</router-link>
+                            </a-menu-item>
                         </a-sub-menu>
                         
                     </a-menu>
