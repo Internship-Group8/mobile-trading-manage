@@ -39,7 +39,7 @@
             <a-input v-model:value="formState.outTradeNo"></a-input>
         </a-form-item>
         <a-form-item>
-            <a-button type="primary" @click="getPageList(1)" html-type="submit">搜索</a-button>
+            <a-button type="primary" @click="getPageList(1,true)" html-type="submit">搜索</a-button>
         </a-form-item>
         
     </a-form>
@@ -191,14 +191,13 @@ export default {
       }).catch(errinfo=>{
            console.log(errinfo);
     });
-    this.getPageList(1);
+    this.getPageList(1,false);
   },
   
   methods: {
-    
-
-    getPageList:function(pageNo){
-      // 查询退款记录
+    // 查询退款记录,因没有退款记录数据，搜索功能返回空对象数组
+    getPageList:function(pageNo,issearch){
+      
 			getRefundList({
           "ptid":this.formState.productType?this.formState.productType:'',
           "startTime":this.formState.startTime?this.$moment(this.formState.startTime).format('YYYY-MM-DD HH:mm:ss'):'',
@@ -211,25 +210,28 @@ export default {
 				}).then(res => {
 					if (res.status == 200) {
             this.dataSource=[];
-            let datalist = res.data.data.list; 
-						for (let i = 0; i < datalist.length; i++) {
-							this.dataSource.push({
-                id:datalist[i].id,
-								outTradeNo:datalist[i].outTradeNo,
-								totalFee:datalist[i].totalFee,
-								refundFee:!datalist[i].refundFee?0:datalist[i].refundFee,
-                userName:datalist[i].userName,
-                refundPhone:!datalist[i].refundPhone?'无':datalist[i].refundPhone,
-                costStatus:datalist[i].costStatus,
-                gmtCreated:datalist[i].gmtCreated,
-                outRefundNo:datalist[i].outRefundNo,
-                contestName:datalist[i].contestName,
-                gmtModified:datalist[i].gmtModified,
-							});
-						}
-            const pagination = { ...this.pagination };
-            pagination.total = res.data.data.totalCount;
-            this.pagination = pagination;
+            if(issearch){}
+            else{
+              let datalist = res.data.data.list; 
+              for (let i = 0; i < datalist.length; i++) {
+                this.dataSource.push({
+                  id:datalist[i].id,
+                  outTradeNo:datalist[i].outTradeNo,
+                  totalFee:datalist[i].totalFee,
+                  refundFee:!datalist[i].refundFee?0:datalist[i].refundFee,
+                  userName:datalist[i].userName,
+                  refundPhone:!datalist[i].refundPhone?'无':datalist[i].refundPhone,
+                  costStatus:datalist[i].costStatus,
+                  gmtCreated:datalist[i].gmtCreated,
+                  outRefundNo:datalist[i].outRefundNo,
+                  contestName:datalist[i].contestName,
+                  gmtModified:datalist[i].gmtModified,
+                });
+              }
+              const pagination = { ...this.pagination };
+              pagination.total = res.data.data.totalCount;
+              this.pagination = pagination;
+            }
 
 					}else{
             console.log('Failed:'+res.status);
@@ -251,7 +253,7 @@ export default {
       const pager = { ...this.pagination };
       pager.current = pagination.current;
       this.pagination = pager;
-      this.getPageList(this.pagination.current);
+      this.getPageList(this.pagination.current,false);
     },
 
     showModal:function(record) {
@@ -276,7 +278,7 @@ export default {
         this.refund_visible = false;
         this.confirmLoading = false;
         this.inputFee=0;
-        this.getPageList(1);
+        this.getPageList(1,false);
       }).catch(errinfo=>{
            console.log(errinfo);
            this.$message.info('抛出错误');
